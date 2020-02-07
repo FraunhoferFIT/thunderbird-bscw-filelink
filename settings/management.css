@@ -1,0 +1,40 @@
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+li {
+    padding: 10px;
+    background-color: #eae9e9;
+    border: 1px solid #d5d5d5;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.25em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+p {
+    margin: 0.5em 0;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="radio"] {
+    width: auto;
+}

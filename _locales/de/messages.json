@@ -1,0 +1,91 @@
+{
+  "extensionDescription": {
+    "message": "Diese Erweiterung ermöglicht das Hochladen von Dateianhängen auf einen BSCW Server, mit Hilfe der Thunderbird Filelink Funktion.\n\nUm Filelink zu aktivieren, müssen Sie unter [Einstellungen > Anhänge > Versand] einen BSCW Account hinzufügen.\n\nUm Dateien zu verschicken, wählen Sie [Anhang > Filelink > BSCW] beim Schreiben einer E-Mail."
+  },
+  "extensionName": {
+    "message": "BSCW Filelink"
+  },
+  "saveButton": {
+    "message": "Speichern"
+  },
+  "verifyButton": {
+    "message": "Zugangsdaten prüfen"
+  },
+  "baseUrlLabel": {
+    "message": "BSCW Server URL"
+  },
+  "baseUrlDescription": {
+    "message": "Bitte geben Sie die URL des BSCW-Ordners an, in dem Anhänge gespeichert werden sollen. Um diese URL zu erhalten, melden Sie sich mit Ihren Web-Browser bei BSCW an und legen einen Ordner an (oder wählen einen vorhandenen aus), in dem die Anhänge gespeichert werden sollen. Klicken Sie auf diesen Ordner, kopieren Sie dann die URL aus der Adressleiste des Browsers und fügen Sie sie in das folgende Feld ein."
+  },
+  "usernameLabel": {
+    "message": "Benutzername"
+  },
+  "usernameDescription": {
+    "message": "Ihr BSCW Benutzername"
+  },
+  "expirationLabel": {
+    "message": "Verfallsdatum"
+  },
+  "expirationDescription": {
+    "message": "Der generierte Link verfällt nach der konfigurierten Anzahl von <i>Tagen</i> [1-365]. Beachten Sie jedoch, dass lediglich der Link abläuft. Die Datei bleibt weiter auf dem Server gespeichert!"
+  },
+  "loginHandlingLabel": {
+    "message": "Handhabung der Logindaten"
+  },
+  "loginHandlingPreDescription": {
+    "message": "Bitte wählen Sie einen der folgenden Ansätze:"
+  },
+  "loginHandlingPostDescription": {
+    "message": "Wenn Sie Option 1 wählen, müssen Sie ihr Passwort jedes Mal eingeben, wenn Sie eine Datei per Filelink anhängen. Option 2 verwendet experimentelle Funktionen, um auf Thunderbirds integrierte Passwortverwaltung zuzugreifen und damit Ihr Kennwort in verschlüsselter Form zu speichern. Dieser Ansatz könnte in zukünftigen Thunderbird-Versionen nicht mehr funktionieren. Wählen Sie die experimentelle Option für den größeren Komfort und Benutzerfreundlichkeit. Greifen Sie auf die erste Option zurück, falls die experimentelle Option nicht funktioniert."
+  },
+  "loginDoNotSaveOption": {
+    "message": "Passwort nicht speichern, nur Benutzername speichern"
+  },
+  "loginSaveExperimentalOption": {
+    "message": "<strong>Experimentell</strong>: Benutzername und Passwort mit Thunderbirds Passwortverwaltung speichern"
+  },
+  "someFormElementsInvalid": {
+    "message": "Sie müssen alle markierten Formularelemente ausfüllen!"
+  },
+  "usernameMissingError": {
+    "message": "Sie müssen einen BSCW Benutzernamen angeben!"
+  },
+  "baseUrlFormatIncorrectError": {
+    "message": "Die Struktur der BSCW Server URL ist nicht korrekt!"
+  },
+  "submitButton": {
+    "message": "Senden"
+  },
+  "cancelButton": {
+    "message": "Abbrechen"
+  },
+  "passwordIntroText": {
+    "message": "Bitte geben Sie für ihren BSCW Benutzer <strong>$USERNAME$</strong> das Passwort an, um diesen Email-Anhang zum Server <strong>$URL$</strong> hochzuladen (ihr Passwort wird nicht gespeichert):",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      },
+      "username": {
+        "content": "$2"
+      }
+    }
+  },
+  "credentialsVerified": {
+    "message": "Die Überprüfung der Zugangsdaten war erfolgreich!"
+  },
+  "credentialsInvalidError": {
+    "message": "Die angegebene Kombination aus Benutzername und Passwort ist dem Server nicht bekannt!"
+  },
+  "invalidFolderError": {
+    "message": "Die BSCW-Ordnernummer Ihrer BSCW-Server-URL existiert nicht!"
+  },
+  "noPermissionError": {
+    "message": "Ihrem Konto fehlen die erforderlichen Berechtigungen!"
+  },
+  "networkCommunicationError": {
+    "message": "Kommunikation mit dem Server ist fehlgeschlagen!"
+  },
+  "unexpectedError": {
+    "message": "Ein unerwarteter Fehler ist aufgetreten! Falls Sie ein Entwickler sind, überprüfen Sie bitte die Konsole."
+  }
+}

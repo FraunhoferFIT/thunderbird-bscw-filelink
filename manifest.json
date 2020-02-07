@@ -1,0 +1,52 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "homepage_url": "https://github.com/FraunhoferFIT/thunderbird-bscw-filelink",
+  "version": "0.1",
+  "author": "Fraunhofer FIT",
+  "applications": {
+    "gecko": {
+      "id": "bscw-filelink@fit.fraunhofer.de",
+      "strict_min_version": "68.0"
+    }
+  },
+  "background": {
+    "scripts": [
+      "background.js",
+      "lib/bscwaccount.js",
+      "lib/bscwhttpclient.js"
+    ]
+  },
+  "icons": {
+    "64": "images/logo-64.png",
+    "32": "images/logo-32.png",
+    "16": "images/logo-16.png"
+  },
+  "cloud_file": {
+    "name": "BSCW",
+    "management_url": "settings/management.html",
+    "data_format": "File"
+  },
+  "experiment_apis": {
+    "myLoginManager": {
+      "schema": "api/loginmanagerschema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "myLoginManager"
+          ]
+        ],
+        "script": "api/loginmanager.js"
+      }
+    }
+  },
+  "permissions": [
+    "<all_urls>",
+    "storage"
+  ],
+  "default_locale": "en"
+}

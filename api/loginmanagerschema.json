@@ -1,0 +1,22 @@
+[
+  {
+    "namespace": "myLoginManager",
+    "functions": [
+      {
+        "name": "getAndStoreUsernameAndPassword",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "discardCachedCredentials",
+            "type": "boolean"
+          }
+        ]
+      }
+    ]
+  }
+]

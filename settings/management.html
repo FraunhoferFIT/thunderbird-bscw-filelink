@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" media="screen" href="management.css">
+    <script src="../lib/bscwaccount.js" defer></script>
+    <script src="../lib/bscwhttpclient.js" defer></script>
+    <script src="management.js" defer=""></script>
+</head>
+<body>
+<form>
+    <h1 data-message="extensionName"></h1>
+    <ul>
+        <li>
+            <label>
+                <h2 data-message="baseUrlLabel"></h2>
+                <p data-message="baseUrlDescription"></p>
+                <input type="url" name="baseUrl" required="true"
+                       placeholder="https://bscw.yourdomain.com/sec/bscw.cgi/123456"/>
+            </label>
+        </li>
+        <li>
+                <h2 data-message="loginHandlingLabel"></h2>
+                <p data-message="loginHandlingPreDescription"></p>
+                <input type="radio" name="loginHandlingOption" id="loginDoNotSave" value="replaced by JS" />
+                <label for="loginDoNotSave" data-message="loginDoNotSaveOption"></label><br>
+                <input type="radio" name="loginHandlingOption" id="loginSaveExperimental" value="replaced by JS" />
+                <label for="loginSaveExperimental" data-message="loginSaveExperimentalOption"></label>
+                <p data-message="loginHandlingPostDescription"></p>
+        </li>
+        <li id="usernameForm">
+            <label>
+                <h2 data-message="usernameLabel"></h2>
+                <p data-message="usernameDescription"></p>
+                <input type="text" name="username" placeholder="max.power"/>
+            </label>
+        </li>
+        <li>
+            <label>
+                <h2 data-message="expirationLabel"></h2>
+                <p data-message="expirationDescription"></p>
+                <input type="number" name="expiration" min="1" max="365" step="1" value="7">
+            </label>
+        </li>
+    </ul>
+    <div style="text-align: right">
+        <button id="save" type="button" data-message="saveButton"></button>
+        <button id="verify" type="button" data-message="verifyButton"></button>
+    </div>
+</form>
+</body>
+</html>

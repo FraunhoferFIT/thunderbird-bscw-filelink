@@ -1,0 +1,91 @@
+{
+  "extensionDescription": {
+    "message": "This extension allows you to upload file attachments to BSCW using Thunderbird's Filelink feature.\n\nTo activate FileLink, add a new BSCW provider under [Options > Attachments > Outgoing].\n\nTo send files, select [Attach > Filelink > BSCW] when composing an email."
+  },
+  "extensionName": {
+    "message": "BSCW Filelink"
+  },
+  "saveButton": {
+    "message": "Save"
+  },
+  "verifyButton": {
+    "message": "Verify credentials"
+  },
+  "baseUrlLabel": {
+    "message": "BSCW Server URL"
+  },
+  "baseUrlDescription": {
+    "message": "Please provide the URL to the BSCW folder in which attachments should be stored. To get this URL, use your web-browser, log into BSCW, and create a folder (or choose an existing one) in which your attachments should be stored. Click on that folder, then copy the URL from the browser's address bar and paste it in the field below."
+  },
+  "usernameLabel": {
+    "message": "Username"
+  },
+  "usernameDescription": {
+    "message": "Your BSCW username"
+  },
+  "expirationLabel": {
+    "message": "Link expiration"
+  },
+  "expirationDescription": {
+    "message": "The generated link will expire after the configured number of <i>days</i> [1-365]. Note, however, that only the link expires, the file will remain on the server!"
+  },
+  "loginHandlingLabel": {
+    "message": "Login handling"
+  },
+  "loginHandlingPreDescription": {
+    "message": "Please choose one of the following approaches:"
+  },
+  "loginHandlingPostDescription": {
+    "message": "Choosing option 1 means that you will have to type your password every time you attach a file. Option 2 uses experimental features to access Thunderbird's internal login manager to store your password in encrypted form, but this approach may stop working in future Thunderbird versions. For improved usability and comfort, select the experimental option. Fall back to the first option if the experimental option doesn't work."
+  },
+  "loginDoNotSaveOption": {
+    "message": "Don't store password, store only username"
+  },
+  "loginSaveExperimentalOption": {
+    "message": "<strong>Experimental</strong>: Store username and password with login manager"
+  },
+  "someFormElementsInvalid": {
+    "message": "You need to fill all highlighted form elements!"
+  },
+  "usernameMissingError": {
+    "message": "You need to provide a BSCW user name!"
+  },
+  "baseUrlFormatIncorrectError": {
+    "message": "The form of the BSCW server URL is not correct!"
+  },
+  "submitButton": {
+    "message": "Submit"
+  },
+  "cancelButton": {
+    "message": "Cancel"
+  },
+  "passwordIntroText": {
+    "message": "To upload this file to <strong>$URL$</strong>, please provide the password for user <strong>$USERNAME$</strong> in the field below (your password is not stored):",
+    "placeholders": {
+      "url": {
+        "content": "$1"
+      },
+      "username": {
+        "content": "$2"
+      }
+    }
+  },
+  "credentialsVerified": {
+    "message": "Credentials verified successfully!"
+  },
+  "credentialsInvalidError": {
+    "message": "The provided username and password combination is not known on the server!"
+  },
+  "invalidFolderError": {
+    "message": "The BSCW folder number of your BSCW server URL does not exist!"
+  },
+  "noPermissionError": {
+    "message": "Your account lacks the necessary permissions!"
+  },
+  "networkCommunicationError": {
+    "message": "Communication with server failed!"
+  },
+  "unexpectedError": {
+    "message": "An unexpected error occurred! If you are a developer, please check the console."
+  }
+}
