@@ -9,6 +9,40 @@ var abortControllers = new Map();
 let passwordResolver = null;
 
 /**
+ * @param {string} url
+ * @param {string} username
+ * @returns {Promise<string>}
+ */
+async function getPasswordFromPopup(url, username) {
+    const popupURL = browser.extension.getURL("popup/getpassword.html"); // type: {string}
+    // build the query string / search params - note that toString() also takes care of encoding special characters
+    const searchParams = new URLSearchParams({"username": username, "url": url}).toString();
+    const windowInfo = await browser.windows.create({
+        url: `${popupURL}?${searchParams}`,
+        type: "popup", // "popup" and "panel" look the same - should they look different?
+        width: 700,
+        height: 300,
+        //titlePreface: "foobar" ignore, as TB doesn't care, it always shows "Loading ..." in the title anyways...
+        allowScriptsToClose: true, // has no effect whatsoever, window.close() does NOT work in the script .. BUGS
+    });
+
+    // blocks until passwordResolver(pw) was called:
+    const password = await new Promise((resolve) => {
+        /*
+        Note: we want the await-call to block until the password was received from the popup (or popup was closed).
+        However, we cannot establish a new browser.runtime.onMessage listener inside a listener. Thus, we have to
+        use this listener (handleContentScriptMessages) and leak the resolve function of this promise. This isn't
+        very clean, but is still nicer than using setTimeout() calls to wait for a global password variable change.
+         */
+        passwordResolver = resolve;
+    });
+    //console.log("Received password: " + password);
+    // Closing window by force here, because window.close() from within the popup doesn't do anything (bugs bugs bugs)
+    await browser.windows.remove(windowInfo.id);
+    return password;
+}
+
+/**
  * Handles the calls to privileged functionality (which only the background.js file may do), such as calls to
  * experimental APIs, or browser.windows...
  * The return value depends on the message.
@@ -29,31 +63,7 @@ async function handleContentScriptMessages(message) {
             return Promise.reject(err);
         }
     } else if (message.msgtype === MSGTYPE_INVOKE_PASSWORD_POPUP) {
-        const popupURL = browser.extension.getURL("popup/getpassword.html"); // type: {string}
-        // build the query string / search params - note that toString() also takes care of encoding special characters
-        const searchParams = new URLSearchParams({"username": message.username, "url": message.url}).toString();
-        const windowInfo = await browser.windows.create({
-            url: `${popupURL}?${searchParams}`,
-            type: "popup", // "popup" and "panel" look the same - should they look different?
-            width: 700,
-            height: 300,
-            //titlePreface: "foobar" ignore, as TB doesn't care, it always shows "Loading ..." in the title anyways...
-            allowScriptsToClose: true, // has no effect whatsoever, window.close() does NOT work in the script .. BUGS
-        });
-
-        // blocks until passwordResolver(pw) was called:
-        const password = await new Promise((resolve) => {
-            /*
-            Note: we want the await-call to block until the password was received from the popup (or popup was closed).
-            However, we cannot establish a new browser.runtime.onMessage listener inside a listener. Thus, we have to
-            use this listener (handleContentScriptMessages) and leak the resolve function of this promise. This isn't
-            very clean, but is still nicer than using setTimeout() calls to wait for a global password variable change.
-             */
-            passwordResolver = resolve;
-        });
-        //console.log("Received password: " + password);
-        // Closing window by force here, because window.close() from within the popup doesn't do anything (bugs bugs bugs)
-        await browser.windows.remove(windowInfo.id);
+        const password = await getPasswordFromPopup(message.username, message.url);
         return Promise.resolve(password);
     } else if (message.msgtype === MSGTYPE_PASSWORD_POPUP_RESPONSE) {
         if (passwordResolver != null) {
