@@ -8,6 +8,19 @@ var abortControllers = new Map();
 
 let passwordResolver = null;
 
+let shouldCloseWindowByForce = true;
+let currentWindowId = -1;
+
+function handleWindowClose(windowId) {
+    if (windowId === currentWindowId) {
+        if (passwordResolver != null) {
+            shouldCloseWindowByForce = false;
+            passwordResolver("");
+            passwordResolver = null;
+        }
+    }
+}
+
 /**
  * @param {string} url
  * @param {string} username
@@ -26,6 +39,12 @@ async function getPasswordFromPopup(url, username) {
         allowScriptsToClose: true, // has no effect whatsoever, window.close() does NOT work in the script .. BUGS
     });
 
+    currentWindowId = windowInfo.id;
+    shouldCloseWindowByForce = true;
+
+    // Handle that the user might click the "X" to close the popup window - treat this as if an empty password was sent
+    browser.windows.onRemoved.addListener(handleWindowClose);
+
     // blocks until passwordResolver(pw) was called:
     const password = await new Promise((resolve) => {
         /*
@@ -37,8 +56,12 @@ async function getPasswordFromPopup(url, username) {
         passwordResolver = resolve;
     });
     //console.log("Received password: " + password);
+    browser.windows.onRemoved.removeListener(handleWindowClose);
     // Closing window by force here, because window.close() from within the popup doesn't do anything (bugs bugs bugs)
-    await browser.windows.remove(windowInfo.id);
+    if (shouldCloseWindowByForce) {
+        await browser.windows.remove(windowInfo.id);
+    }
+
     return password;
 }
 
