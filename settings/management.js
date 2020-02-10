@@ -119,6 +119,7 @@ verifyButton.onclick = async () => {
     const client = new BscwHttpClient(bscwAccount);
     const autoRetry = false;
     const discardCachedCredentials = true;
+    verifyButton.disabled = true;
     try {
         await client.getAndCheckCredentials(autoRetry, discardCachedCredentials);
         alert(browser.i18n.getMessage("credentialsVerified"));
@@ -138,5 +139,7 @@ verifyButton.onclick = async () => {
             console.log(err);
             alert(browser.i18n.getMessage("unexpectedError"));
         }
+    } finally {
+        verifyButton.disabled = false;
     }
 };
